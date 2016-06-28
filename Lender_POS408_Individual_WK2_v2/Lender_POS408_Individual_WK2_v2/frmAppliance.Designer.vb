@@ -43,6 +43,9 @@ Partial Class frmAppliance
         Me.txtGallonCost = New System.Windows.Forms.TextBox()
         Me.lstOutput = New System.Windows.Forms.ListBox()
         Me.lblDailyCost = New System.Windows.Forms.Label()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
         Me.cmsCopy.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,7 +60,7 @@ Partial Class frmAppliance
         '
         'btnCalculate
         '
-        Me.btnCalculate.Location = New System.Drawing.Point(12, 594)
+        Me.btnCalculate.Location = New System.Drawing.Point(3, 559)
         Me.btnCalculate.Name = "btnCalculate"
         Me.btnCalculate.Size = New System.Drawing.Size(75, 23)
         Me.btnCalculate.TabIndex = 7
@@ -66,7 +69,7 @@ Partial Class frmAppliance
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(213, 594)
+        Me.btnClose.Location = New System.Drawing.Point(234, 559)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 9
@@ -163,7 +166,7 @@ Partial Class frmAppliance
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(113, 594)
+        Me.btnClear.Location = New System.Drawing.Point(124, 609)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 8
@@ -227,12 +230,31 @@ Partial Class frmAppliance
         Me.lblDailyCost.TabIndex = 18
         Me.lblDailyCost.Text = "Daily Cost"
         '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(124, 559)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.TabIndex = 19
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(321, 24)
+        Me.MenuStrip1.TabIndex = 20
+        Me.MenuStrip1.Text = "Save As"
+        '
         'frmAppliance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(321, 644)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.lblDailyCost)
         Me.Controls.Add(Me.lstOutput)
         Me.Controls.Add(Me.txtGallonCost)
@@ -251,6 +273,7 @@ Partial Class frmAppliance
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnCalculate)
         Me.Controls.Add(Me.lblAppliance)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmAppliance"
         Me.Text = "Appliance Calculator"
         Me.cmsCopy.ResumeLayout(False)
@@ -278,5 +301,8 @@ Partial Class frmAppliance
     Friend WithEvents lblDailyCost As System.Windows.Forms.Label
     Friend WithEvents cmsCopy As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents CopyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents btnSave As System.Windows.Forms.Button
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents saveDialog As System.Windows.Forms.SaveFileDialog
 
 End Class

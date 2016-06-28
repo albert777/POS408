@@ -292,4 +292,13 @@
     End Sub
 
 
+    Public Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        If saveDialog.ShowDialog = _
+        Windows.Forms.DialogResult.OK Then
+            Dim lines(lstOutput.Items.Count - 1) As String
+            lstOutput.Items.CopyTo(lines, 0)
+            IO.File.WriteAllLines(saveDialog.FileName, lines)
+        End If
+
+    End Sub
 End Class
