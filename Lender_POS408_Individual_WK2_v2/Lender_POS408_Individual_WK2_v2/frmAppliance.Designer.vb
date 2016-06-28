@@ -34,7 +34,6 @@ Partial Class frmAppliance
         Me.lblHoursUsed = New System.Windows.Forms.Label()
         Me.txtKwh = New System.Windows.Forms.TextBox()
         Me.txtHoursUsed = New System.Windows.Forms.TextBox()
-        Me.lblTotalCost = New System.Windows.Forms.Label()
         Me.lstAppliance = New System.Windows.Forms.ListBox()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.lblGallons = New System.Windows.Forms.Label()
@@ -46,6 +45,9 @@ Partial Class frmAppliance
         Me.btnSave = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.saveDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.txtDailyCost = New System.Windows.Forms.TextBox()
+        Me.lblTotalCost = New System.Windows.Forms.Label()
+        Me.txtTotalCost = New System.Windows.Forms.TextBox()
         Me.cmsCopy.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -145,15 +147,6 @@ Partial Class frmAppliance
         Me.txtHoursUsed.TabIndex = 4
         Me.txtHoursUsed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'lblTotalCost
-        '
-        Me.lblTotalCost.AutoSize = True
-        Me.lblTotalCost.Location = New System.Drawing.Point(12, 507)
-        Me.lblTotalCost.Name = "lblTotalCost"
-        Me.lblTotalCost.Size = New System.Drawing.Size(55, 13)
-        Me.lblTotalCost.TabIndex = 16
-        Me.lblTotalCost.Text = "Total Cost"
-        '
         'lstAppliance
         '
         Me.lstAppliance.FormattingEnabled = True
@@ -247,12 +240,45 @@ Partial Class frmAppliance
         Me.MenuStrip1.TabIndex = 20
         Me.MenuStrip1.Text = "Save As"
         '
+        'saveDialog
+        '
+        Me.saveDialog.DefaultExt = "txt"
+        '
+        'txtDailyCost
+        '
+        Me.txtDailyCost.Location = New System.Drawing.Point(209, 539)
+        Me.txtDailyCost.MaxLength = 10
+        Me.txtDailyCost.Name = "txtDailyCost"
+        Me.txtDailyCost.ReadOnly = True
+        Me.txtDailyCost.Size = New System.Drawing.Size(100, 20)
+        Me.txtDailyCost.TabIndex = 21
+        '
+        'lblTotalCost
+        '
+        Me.lblTotalCost.AutoSize = True
+        Me.lblTotalCost.Location = New System.Drawing.Point(12, 507)
+        Me.lblTotalCost.Name = "lblTotalCost"
+        Me.lblTotalCost.Size = New System.Drawing.Size(55, 13)
+        Me.lblTotalCost.TabIndex = 16
+        Me.lblTotalCost.Text = "Total Cost"
+        '
+        'txtTotalCost
+        '
+        Me.txtTotalCost.Location = New System.Drawing.Point(209, 503)
+        Me.txtTotalCost.MaxLength = 10
+        Me.txtTotalCost.Name = "txtTotalCost"
+        Me.txtTotalCost.ReadOnly = True
+        Me.txtTotalCost.Size = New System.Drawing.Size(100, 20)
+        Me.txtTotalCost.TabIndex = 22
+        '
         'frmAppliance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(321, 644)
+        Me.Controls.Add(Me.txtTotalCost)
+        Me.Controls.Add(Me.txtDailyCost)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.lblDailyCost)
@@ -290,7 +316,6 @@ Partial Class frmAppliance
     Friend WithEvents lblHoursUsed As System.Windows.Forms.Label
     Friend WithEvents txtKwh As System.Windows.Forms.TextBox
     Friend WithEvents txtHoursUsed As System.Windows.Forms.TextBox
-    Friend WithEvents lblTotalCost As System.Windows.Forms.Label
     Friend WithEvents lstAppliance As System.Windows.Forms.ListBox
     Friend WithEvents btnClear As System.Windows.Forms.Button
     Friend WithEvents lblGallons As System.Windows.Forms.Label
@@ -304,5 +329,8 @@ Partial Class frmAppliance
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents saveDialog As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents txtDailyCost As System.Windows.Forms.TextBox
+    Friend WithEvents lblTotalCost As System.Windows.Forms.Label
+    Friend WithEvents txtTotalCost As System.Windows.Forms.TextBox
 
 End Class

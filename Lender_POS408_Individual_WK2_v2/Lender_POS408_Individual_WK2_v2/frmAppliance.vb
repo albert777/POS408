@@ -134,16 +134,28 @@
 
                 dblDailyTotal = dblDailyTotal + dblTotal
 
-                lblDailyCost.Text = "Total Daily Cost For all Appliances: " & dblDailyTotal.ToString("c")
+                txtDailyCost.Text = dblDailyTotal.ToString("c")
 
-                lblTotalCost.Text = "Daily Cost for  " & lstAppliance.SelectedItem.ToString & "  " & dblTotal.ToString("c")
+                txtTotalCost.Text = dblTotal.ToString("c")
+
+                'lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
+
+
+
+                lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
+                While lstOutput.Items.Count > 0
+                    lstOutput.Items.RemoveAt(0)
+                End While
+                'lstOutput.Items.RemoveAt(1)
+
+                lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
 
                 lstOutput.Items.Add(lstAppliance.SelectedItem.ToString() & vbTab & "Hours Used" & vbTab & dblHoursUsed.ToString & vbTab & "Cost " & dblTotal.ToString("c"))
                 txtKwhCost.Text = "0"
                 txtKwh.Text = "0"
                 txtHoursUsed.Text = "0"
                 txtGallonCost.Text = "0"
-                txtGallons.Text = "0"
+                
                 lstAppliance.SelectedIndex = 0
 
             End If
@@ -259,8 +271,11 @@
         txtHoursUsed.Text = "0"
         txtGallonCost.Text = "0"
         txtGallons.Text = "0"
-        lblDailyCost.Text = "Daily Cost"
-        lblTotalCost.Text = "Total Cost"
+        txtGallons.Text = "0"
+        txtTotalCost.Text = "0"
+        txtDailyCost.Text = "0"
+        'lblDailyCost.Text = "Daily Cost"
+        'lblTotalCost.Text = "Total Cost"
         lstAppliance.SelectedIndex = 0
         dblDailyTotal = 0
         dblTotal = 0
@@ -292,12 +307,14 @@
     End Sub
 
 
+
     Public Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If saveDialog.ShowDialog = _
-        Windows.Forms.DialogResult.OK Then
+        saveDialog.Filter = "TXT Files (*.txt*)|*.txt"
+        If saveDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim lines(lstOutput.Items.Count - 1) As String
             lstOutput.Items.CopyTo(lines, 0)
             IO.File.WriteAllLines(saveDialog.FileName, lines)
+         
         End If
 
     End Sub

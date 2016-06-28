@@ -1,2 +1,2 @@
-Fan          	Hours Used	2	Cost $0.80
-Washer   	Hours Used	2	Cost $0.82
+Washer   	Hours Used	2	Cost $0.90
+Dryer       	Hours Used	2	Cost $0.80
