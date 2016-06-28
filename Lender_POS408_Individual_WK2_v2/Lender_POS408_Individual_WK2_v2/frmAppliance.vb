@@ -44,8 +44,6 @@
 
     Dim dblGallonCost As Double
 
-    Dim strSelectedAppliance As String
-
     Dim dblDailyTotal As Double
 
 
@@ -138,17 +136,12 @@
 
                 txtTotalCost.Text = dblTotal.ToString("c")
 
-                'lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
+          
 
+                
 
-
-                lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
-                While lstOutput.Items.Count > 0
-                    lstOutput.Items.RemoveAt(0)
-                End While
-                'lstOutput.Items.RemoveAt(1)
-
-                lstOutput.Items.Insert(0, ("Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
+                'Inserts 
+                lstOutput.Items.Insert(0, ("              Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
 
                 lstOutput.Items.Add(lstAppliance.SelectedItem.ToString() & vbTab & "Hours Used" & vbTab & dblHoursUsed.ToString & vbTab & "Cost " & dblTotal.ToString("c"))
                 txtKwhCost.Text = "0"
@@ -160,13 +153,20 @@
 
             End If
 
+            'If Statement added to remove the old txt.TotalCost item in lstOutput and ensure that only one
+            'copy of lstOutput is at the top of the lstOutput at index 0.  without this, the txtTotalCost was added 
+            'to index 0 of lstOutput and created multiple Total Cost entries in the lstOutput.  If statement only 
+            'triggers on the second and subsequent calculations
+            If lstOutput.Items.Count > 2 Then
+                lstOutput.Items.RemoveAt(1)
+            End If
 
         Catch ex As Exception
             'Beep() plays audible error tone to help alert the user that there is an error
             'Catch is to prevent crash.  it alerts the user what they need to do for each text box
             Beep()
             MessageBox.Show("Please enter a valid number in text boxes.  Take care to verify that you did not enter more than one decimal point per box.  Please enter numbers or a single '.' only.  " & ex.Message)
-            
+
 
 
         Finally
