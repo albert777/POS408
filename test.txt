@@ -1,2 +1,3 @@
-Washer   	Hours Used	2	Cost $0.90
-Dryer       	Hours Used	2	Cost $0.80
+              Daily Cost For All Appliances 	$7.30
+Refrigerator	Hours Used	2	Cost $0.80
+Washer   	Hours Used	4	Cost $6.50

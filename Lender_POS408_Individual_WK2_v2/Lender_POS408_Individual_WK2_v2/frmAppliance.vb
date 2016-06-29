@@ -1,4 +1,6 @@
-﻿Public Class frmAppliance
+﻿Imports System.IO
+
+Public Class frmAppliance
     'Author: Michael Lender
 
     'FileName Lender_POS_Individual_WK2_v2.3
@@ -46,6 +48,18 @@
 
     Dim dblDailyTotal As Double
 
+    Dim i As Integer = 0
+
+    Dim strDefaults As String
+
+    'Dim sr As New StreamReader("Defaults.txt")
+
+    'do until sr.Peek = -1
+    '' load one word at a time till all are loaded
+    'strDefaults = sr.ReadLine()
+
+    'strDefaults(i) = strDefaults
+
 
 
 
@@ -58,6 +72,7 @@
         'Sets dblDailyTotal to 0 on form load
         dblDailyTotal = 0
     End Sub
+
 
 
     Private Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
@@ -136,11 +151,11 @@
 
                 txtTotalCost.Text = dblTotal.ToString("c")
 
-          
 
-                
 
-                'Inserts 
+
+
+                'Inserts daily cost for all appliances to the top of lstOutput for saving in text file
                 lstOutput.Items.Insert(0, ("              Daily Cost For All Appliances " & vbTab & txtDailyCost.Text.ToString()))
 
                 lstOutput.Items.Add(lstAppliance.SelectedItem.ToString() & vbTab & "Hours Used" & vbTab & dblHoursUsed.ToString & vbTab & "Cost " & dblTotal.ToString("c"))
@@ -148,7 +163,7 @@
                 txtKwh.Text = "0"
                 txtHoursUsed.Text = "0"
                 txtGallonCost.Text = "0"
-                
+
                 lstAppliance.SelectedIndex = 0
 
             End If
@@ -192,7 +207,7 @@
 
         End If
     End Sub
-    
+
 
 
 
@@ -314,8 +329,11 @@
             Dim lines(lstOutput.Items.Count - 1) As String
             lstOutput.Items.CopyTo(lines, 0)
             IO.File.WriteAllLines(saveDialog.FileName, lines)
-         
+
         End If
 
     End Sub
+
+
+    
 End Class
