@@ -1,11 +1,3 @@
-5
-1
-1
-5
-1
-1
-1
-1
-1
-1
-1
+              Daily Cost For All Appliances 	$4.90
+Fan          	Hours Used	2	Cost $2.80
+Washer   	Hours Used	2	Cost $2.10

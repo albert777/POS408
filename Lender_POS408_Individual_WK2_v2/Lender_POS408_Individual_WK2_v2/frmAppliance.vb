@@ -325,6 +325,8 @@ Public Class frmAppliance
         lstOutput.Items.Clear()
 
     End Sub
+
+   
     'Determines if washer was selected.  If washer is selected the user is instructed to enter gallons used per hour and cost per gallon
     'If the user selects washer, enters values and then changes the appliance to anything other than washer, txtGallonCost and txtGallons are set to 0 
     'to prevent the calculation from being performed with water values for an appliance that doesn't need them
@@ -341,7 +343,9 @@ Public Class frmAppliance
 
         End If
 
-        intSelectedAppliance = lstAppliance.SelectedIndex
+
+
+        'intSelectedAppliance = lstAppliance.SelectedIndex
 
 
     End Sub
@@ -392,6 +396,15 @@ Public Class frmAppliance
     End Sub
 
     Public Sub TexttoArray()
+     
+        'txtKwh.Text = arrStream(lstAppliance.SelectedIndex)
+        'MessageBox.Show(arrStream(lstAppliance.SelectedIndex))
+    End Sub
+
+    
+ 
+
+    Private Sub lstAppliance_LostFocus(sender As Object, e As EventArgs) Handles lstAppliance.LostFocus
         Dim fsDefaults As New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
 
         Dim srDefaults As New System.IO.StreamReader(fsDefaults)
@@ -417,13 +430,13 @@ Public Class frmAppliance
 
         srDefaults = New System.IO.StreamReader(fsDefaults)
 
-        Dim arrStream(0) As String
+        Dim arrStream As String()
 
         Dim Index As Integer = 0
 
         Do While srDefaults.Peek >= 0
 
-            ReDim Preserve arrDefaults(Index)
+            ReDim Preserve arrStream(Index)
             arrStream(Index) = srDefaults.ReadLine
             Index += 1
         Loop
@@ -432,12 +445,6 @@ Public Class frmAppliance
         fsDefaults.Close()
 
         fsDefaults.Close()
-
-        MessageBox.Show(arrStream.ToString())
-    End Sub
-
-    
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        TexttoArray()
+        txtKwh.Text = arrStream(lstAppliance.SelectedIndex)
     End Sub
 End Class
