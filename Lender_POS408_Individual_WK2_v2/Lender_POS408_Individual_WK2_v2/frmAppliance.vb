@@ -54,6 +54,8 @@ Public Class frmAppliance
 
     Dim intLine As Integer
 
+    Dim intSelectedAppliance As Integer
+
     'Dim thefile As String = "defaults"
     Dim lines() As String = System.IO.File.ReadAllLines("defaults.txt")
 
@@ -74,10 +76,28 @@ Public Class frmAppliance
 
 
     'Sets default values of text boxes to "0" when the form is loaded
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmAppliance_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         InitializeControls()
         'Sets dblDailyTotal to 0 on form load
+        If lblFilePath.Text = "File Path" Then
+            MessageBox.Show("Please Select a default power rating file path before proceeding.")
+            Dim openFilePath As New OpenFileDialog()
+
+            openfileFilePath.InitialDirectory = "\debug"
+            openfileFilePath.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+            openfileFilePath.FilterIndex = 2
+            openfileFilePath.RestoreDirectory = True
+            Me.Show()
+
+
+        End If
+
+        If openfileFilePath.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+            'lblfilepath.text is changed to the file path of the selected database
+            lblFilePath.Text = openfileFilePath.FileName
+        End If
         dblDailyTotal = 0
+
     End Sub
 
 
@@ -320,6 +340,10 @@ Public Class frmAppliance
             txtGallons.Text = "0"
 
         End If
+
+        intSelectedAppliance = lstAppliance.SelectedIndex
+
+
     End Sub
 
     'ContextMenustrip added to prevent users from pasting non allowed characters into the textboxes by right clicking and selecting paste.
@@ -345,14 +369,75 @@ Public Class frmAppliance
    
     
     Private Sub btnDefault_Click(sender As Object, e As EventArgs) Handles btnDefault.Click
-        'sets value of intline to the index number of the selected item.  this allows the application to know
-        'which line to save the default rating to so that it can read it next time the application is used
-        intLine = lstAppliance.SelectedIndex
+        'Converts txtKwh to a double so that the input data in the textbox is now a number and can be used in calculations
+        dblKwh = CDbl(txtKwh.Text)
+        MessageBox.Show("When default power ratings are updated, you must exit and restart application for changes to take effect.")
+        If (dblKwh <= 0 Or dblKwh > 30) Then
 
-        'allows the app to know what was in the textbox for txtKwh.text so it can write it to file
-        lines(intLine) = txtKwh.Text
+            'Beep() plays audible error tone to help alert the user that there is an error
+            Beep()
+            MessageBox.Show("Please enter a Kwh value between 0 and 30 ")
+        Else
+            'sets value of intline to the index number of the selected item.  this allows the application to know
+            'which line to save the default rating to so that it can read it next time the application is used
+            intLine = lstAppliance.SelectedIndex
 
-        'actually writes the value to the file
-        System.IO.File.WriteAllLines("defaults.txt", lines)
+            'allows the app to know what was in the textbox for txtKwh.text so it can write it to file
+            lines(intLine) = txtKwh.Text
+
+            'actually writes the value to the file
+            System.IO.File.WriteAllLines("defaults.txt", lines)
+            'file path for the default file is \Lender_pos408_Individual_WK2_v2\Lender_pos408_Individual_WK2_v2\bin\defaults.txt
+        End If
+    End Sub
+
+    Public Sub TexttoArray()
+        Dim fsDefaults As New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
+
+        Dim srDefaults As New System.IO.StreamReader(fsDefaults)
+
+
+        Dim List As New List(Of String)
+
+        Do While srDefaults.Peek >= 0
+            List.Add(srDefaults.ReadLine)
+        Loop
+
+        'to go back to an array
+
+        Dim arrDefaults As String() = List.ToArray
+
+        fsDefaults.Close()
+
+        srDefaults.Close()
+
+        'With Array
+
+        fsDefaults = New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
+
+        srDefaults = New System.IO.StreamReader(fsDefaults)
+
+        Dim arrStream(0) As String
+
+        Dim Index As Integer = 0
+
+        Do While srDefaults.Peek >= 0
+
+            ReDim Preserve arrDefaults(Index)
+            arrStream(Index) = srDefaults.ReadLine
+            Index += 1
+        Loop
+
+
+        fsDefaults.Close()
+
+        fsDefaults.Close()
+
+        MessageBox.Show(arrStream.ToString())
+    End Sub
+
+    
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        TexttoArray()
     End Sub
 End Class
