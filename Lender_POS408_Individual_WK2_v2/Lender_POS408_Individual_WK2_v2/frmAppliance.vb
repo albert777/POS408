@@ -54,8 +54,8 @@ Public Class frmAppliance
 
     Dim intLine As Integer
 
-    Dim thefile As String = "filepath"
-    Dim lines() As String = System.IO.File.ReadAllLines("filepath.txt")
+    'Dim thefile As String = "defaults"
+    Dim lines() As String = System.IO.File.ReadAllLines("defaults.txt")
 
     
 
@@ -345,10 +345,14 @@ Public Class frmAppliance
    
     
     Private Sub btnDefault_Click(sender As Object, e As EventArgs) Handles btnDefault.Click
-        
-        lines(3) = txtKwh.Text
+        'sets value of intline to the index number of the selected item.  this allows the application to know
+        'which line to save the default rating to so that it can read it next time the application is used
+        intLine = lstAppliance.SelectedIndex
 
+        'allows the app to know what was in the textbox for txtKwh.text so it can write it to file
+        lines(intLine) = txtKwh.Text
 
-        System.IO.File.WriteAllLines("filepath.txt", lines)
+        'actually writes the value to the file
+        System.IO.File.WriteAllLines("defaults.txt", lines)
     End Sub
 End Class
