@@ -48,6 +48,7 @@ Partial Class frmAppliance
         Me.txtDailyCost = New System.Windows.Forms.TextBox()
         Me.lblTotalCost = New System.Windows.Forms.Label()
         Me.txtTotalCost = New System.Windows.Forms.TextBox()
+        Me.btnDefault = New System.Windows.Forms.Button()
         Me.cmsCopy.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,7 +63,7 @@ Partial Class frmAppliance
         '
         'btnCalculate
         '
-        Me.btnCalculate.Location = New System.Drawing.Point(3, 559)
+        Me.btnCalculate.Location = New System.Drawing.Point(0, 565)
         Me.btnCalculate.Name = "btnCalculate"
         Me.btnCalculate.Size = New System.Drawing.Size(75, 23)
         Me.btnCalculate.TabIndex = 7
@@ -71,7 +72,7 @@ Partial Class frmAppliance
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(234, 559)
+        Me.btnClose.Location = New System.Drawing.Point(234, 565)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 9
@@ -159,7 +160,7 @@ Partial Class frmAppliance
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(124, 609)
+        Me.btnClear.Location = New System.Drawing.Point(234, 609)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 8
@@ -225,7 +226,7 @@ Partial Class frmAppliance
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(124, 559)
+        Me.btnSave.Location = New System.Drawing.Point(124, 565)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 19
@@ -271,12 +272,22 @@ Partial Class frmAppliance
         Me.txtTotalCost.Size = New System.Drawing.Size(100, 20)
         Me.txtTotalCost.TabIndex = 22
         '
+        'btnDefault
+        '
+        Me.btnDefault.Location = New System.Drawing.Point(3, 609)
+        Me.btnDefault.Name = "btnDefault"
+        Me.btnDefault.Size = New System.Drawing.Size(164, 23)
+        Me.btnDefault.TabIndex = 23
+        Me.btnDefault.Text = "Set Kwh Default"
+        Me.btnDefault.UseVisualStyleBackColor = True
+        '
         'frmAppliance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(321, 644)
+        Me.Controls.Add(Me.btnDefault)
         Me.Controls.Add(Me.txtTotalCost)
         Me.Controls.Add(Me.txtDailyCost)
         Me.Controls.Add(Me.btnSave)
@@ -332,5 +343,6 @@ Partial Class frmAppliance
     Friend WithEvents txtDailyCost As System.Windows.Forms.TextBox
     Friend WithEvents lblTotalCost As System.Windows.Forms.Label
     Friend WithEvents txtTotalCost As System.Windows.Forms.TextBox
+    Friend WithEvents btnDefault As System.Windows.Forms.Button
 
 End Class

@@ -50,7 +50,14 @@ Public Class frmAppliance
 
     Dim i As Integer = 0
 
-    Dim strDefaults As String
+    Dim strDefault As String
+
+    Dim intLine As Integer
+
+    Dim thefile As String = "filepath"
+    Dim lines() As String = System.IO.File.ReadAllLines("filepath.txt")
+
+    
 
     'Dim sr As New StreamReader("Defaults.txt")
 
@@ -279,7 +286,8 @@ Public Class frmAppliance
 
 
     Private Sub InitializeControls()
-        'Sets all values to zero for text boxes, dblDailyTotal and dblTotal as well as deselects lstAppliance  Also resets the text on the lblDailyCost and lblTotalCost
+        'Sets all values to zero for text boxes, dblDailyTotal and dblTotal as well as sets lstAppliance to index 0
+        'Also resets the text on the lblDailyCost and lblTotalCost
         'Used on startup and when the form is cleared.  
         txtKwhCost.Text = "0"
         txtKwh.Text = "0"
@@ -334,6 +342,13 @@ Public Class frmAppliance
 
     End Sub
 
-
+   
     
+    Private Sub btnDefault_Click(sender As Object, e As EventArgs) Handles btnDefault.Click
+        
+        lines(3) = txtKwh.Text
+
+
+        System.IO.File.WriteAllLines("filepath.txt", lines)
+    End Sub
 End Class

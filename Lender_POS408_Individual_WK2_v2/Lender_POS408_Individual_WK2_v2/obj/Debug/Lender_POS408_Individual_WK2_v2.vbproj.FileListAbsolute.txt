@@ -42,3 +42,14 @@ C:\Users\Psubond\Desktop\School\POS408\Week 4\Lender_POS408_Individual_WK2_v2\Le
 C:\Users\Psubond\Desktop\School\POS408\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.frmAppliance.resources
 C:\Users\Psubond\Desktop\School\POS408\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.Resources.resources
 C:\Users\Psubond\Desktop\School\POS408\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.vbproj.GenerateResource.Cache
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\bin\Debug\Lender_POS408_Individual_WK2_v2.exe.config
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.exe
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.xml
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.pdb
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.vbprojResolveAssemblyReference.cache
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.frmAppliance.resources
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.Resources.resources
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\obj\Debug\Lender_POS408_Individual_WK2_v2.vbproj.GenerateResource.Cache
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\bin\Debug\Lender_POS408_Individual_WK2_v2.exe
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\bin\Debug\Lender_POS408_Individual_WK2_v2.pdb
+E:\School\POS408\Week 4\Week 4\Lender_POS408_Individual_WK2_v2\Lender_POS408_Individual_WK2_v2\bin\Debug\Lender_POS408_Individual_WK2_v2.xml
