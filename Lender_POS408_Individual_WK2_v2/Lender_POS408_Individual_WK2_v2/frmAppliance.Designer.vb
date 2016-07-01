@@ -50,7 +50,6 @@ Partial Class frmAppliance
         Me.txtTotalCost = New System.Windows.Forms.TextBox()
         Me.btnDefault = New System.Windows.Forms.Button()
         Me.lblFilePath = New System.Windows.Forms.Label()
-        Me.openfileFilePath = New System.Windows.Forms.OpenFileDialog()
         Me.cmsCopy.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -87,7 +86,7 @@ Partial Class frmAppliance
         Me.lblKwhCost.Location = New System.Drawing.Point(12, 153)
         Me.lblKwhCost.Name = "lblKwhCost"
         Me.lblKwhCost.Size = New System.Drawing.Size(139, 13)
-        Me.lblKwhCost.TabIndex = 11
+        Me.lblKwhCost.TabIndex = 20
         Me.lblKwhCost.Text = "Enter Cost Per Kilowatt-hour"
         '
         'txtKwhCost
@@ -118,7 +117,7 @@ Partial Class frmAppliance
         Me.lblKwh.Location = New System.Drawing.Point(12, 200)
         Me.lblKwh.Name = "lblKwh"
         Me.lblKwh.Size = New System.Drawing.Size(155, 13)
-        Me.lblKwh.TabIndex = 12
+        Me.lblKwh.TabIndex = 21
         Me.lblKwh.Text = "Enter Kwh Rating for Appliance"
         '
         'lblHoursUsed
@@ -127,7 +126,7 @@ Partial Class frmAppliance
         Me.lblHoursUsed.Location = New System.Drawing.Point(12, 250)
         Me.lblHoursUsed.Name = "lblHoursUsed"
         Me.lblHoursUsed.Size = New System.Drawing.Size(138, 13)
-        Me.lblHoursUsed.TabIndex = 13
+        Me.lblHoursUsed.TabIndex = 22
         Me.lblHoursUsed.Text = "Enter Hours Used That Day"
         '
         'txtKwh
@@ -165,7 +164,7 @@ Partial Class frmAppliance
         Me.btnClear.Location = New System.Drawing.Point(234, 609)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 8
+        Me.btnClear.TabIndex = 11
         Me.btnClear.Text = "Clear Form"
         Me.btnClear.UseVisualStyleBackColor = True
         '
@@ -174,9 +173,9 @@ Partial Class frmAppliance
         Me.lblGallons.AutoSize = True
         Me.lblGallons.Location = New System.Drawing.Point(12, 299)
         Me.lblGallons.Name = "lblGallons"
-        Me.lblGallons.Size = New System.Drawing.Size(114, 13)
-        Me.lblGallons.TabIndex = 14
-        Me.lblGallons.Text = "Gallons of Water Used"
+        Me.lblGallons.Size = New System.Drawing.Size(158, 13)
+        Me.lblGallons.TabIndex = 23
+        Me.lblGallons.Text = "Gallons of Water Used per Hour"
         '
         'lblGallonCost
         '
@@ -184,7 +183,7 @@ Partial Class frmAppliance
         Me.lblGallonCost.Location = New System.Drawing.Point(15, 336)
         Me.lblGallonCost.Name = "lblGallonCost"
         Me.lblGallonCost.Size = New System.Drawing.Size(83, 13)
-        Me.lblGallonCost.TabIndex = 15
+        Me.lblGallonCost.TabIndex = 24
         Me.lblGallonCost.Text = "Price Per Gallon"
         '
         'txtGallons
@@ -222,16 +221,16 @@ Partial Class frmAppliance
         Me.lblDailyCost.AutoSize = True
         Me.lblDailyCost.Location = New System.Drawing.Point(11, 543)
         Me.lblDailyCost.Name = "lblDailyCost"
-        Me.lblDailyCost.Size = New System.Drawing.Size(54, 13)
-        Me.lblDailyCost.TabIndex = 18
-        Me.lblDailyCost.Text = "Daily Cost"
+        Me.lblDailyCost.Size = New System.Drawing.Size(177, 13)
+        Me.lblDailyCost.TabIndex = 26
+        Me.lblDailyCost.Text = "Daily Cost for all Appliances Entered"
         '
         'btnSave
         '
         Me.btnSave.Location = New System.Drawing.Point(124, 565)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 19
+        Me.btnSave.TabIndex = 8
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -261,9 +260,9 @@ Partial Class frmAppliance
         Me.lblTotalCost.AutoSize = True
         Me.lblTotalCost.Location = New System.Drawing.Point(12, 507)
         Me.lblTotalCost.Name = "lblTotalCost"
-        Me.lblTotalCost.Size = New System.Drawing.Size(55, 13)
-        Me.lblTotalCost.TabIndex = 16
-        Me.lblTotalCost.Text = "Total Cost"
+        Me.lblTotalCost.Size = New System.Drawing.Size(120, 13)
+        Me.lblTotalCost.TabIndex = 25
+        Me.lblTotalCost.Text = "Total Cost for Appliance"
         '
         'txtTotalCost
         '
@@ -279,7 +278,7 @@ Partial Class frmAppliance
         Me.btnDefault.Location = New System.Drawing.Point(3, 609)
         Me.btnDefault.Name = "btnDefault"
         Me.btnDefault.Size = New System.Drawing.Size(164, 23)
-        Me.btnDefault.TabIndex = 23
+        Me.btnDefault.TabIndex = 10
         Me.btnDefault.Text = "Set Kwh Default"
         Me.btnDefault.UseVisualStyleBackColor = True
         '
@@ -289,12 +288,8 @@ Partial Class frmAppliance
         Me.lblFilePath.Location = New System.Drawing.Point(0, 661)
         Me.lblFilePath.Name = "lblFilePath"
         Me.lblFilePath.Size = New System.Drawing.Size(58, 13)
-        Me.lblFilePath.TabIndex = 26
+        Me.lblFilePath.TabIndex = 27
         Me.lblFilePath.Text = "defaults.txt"
-        '
-        'openfileFilePath
-        '
-        Me.openfileFilePath.FileName = "OpenFileDialog1"
         '
         'frmAppliance
         '
@@ -361,6 +356,5 @@ Partial Class frmAppliance
     Friend WithEvents txtTotalCost As System.Windows.Forms.TextBox
     Friend WithEvents btnDefault As System.Windows.Forms.Button
     Friend WithEvents lblFilePath As System.Windows.Forms.Label
-    Friend WithEvents openfileFilePath As System.Windows.Forms.OpenFileDialog
 
 End Class

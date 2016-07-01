@@ -1,4 +1,4 @@
-﻿Imports System.IO
+﻿
 
 Public Class frmAppliance
     'Author: Michael Lender
@@ -56,32 +56,41 @@ Public Class frmAppliance
 
     Dim intSelectedAppliance As Integer
 
-
+    'Reads defaults.txt into array for the auto selection of default kWh values
     Dim lines() As String = System.IO.File.ReadAllLines("defaults.txt")
 
     
 
     'Sets default values of text boxes to "0" when the form is loaded
-    Private Sub frmAppliance_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Public Sub frmAppliance_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         InitializeControls()
+        '****this feature will be added in a future version.  the purpose of this is to allow the user to select the desired default value file.  For now it is commented out
+        'it currently works but there is a Known issue loading anything other than a file named defaults on start.  The next version upgrade will enable this feature*****
+
+
         'Prompts user to select the default power rating file.  
-        If lblFilePath.Text = "File Path" Then
-            MessageBox.Show("Please Select a default power rating file path before proceeding.  If you do not know what you are doing, DO NOT select a file other than Defaults.txt, the defaults you save will not load next time you open the application.")
-            Dim openFilePath As New OpenFileDialog()
-            'Sets the default file location to the debug folder
-            openfileFilePath.InitialDirectory = "\bin\debug"
-            openfileFilePath.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
-            openfileFilePath.FilterIndex = 2
-            'openfileFilePath.RestoreDirectory = True
-            Me.Show()
+        'MessageBox.Show("Please Select a default power rating file path before proceeding.  If you do not know what you are doing, DO NOT select a file other than Defaults.txt, the defaults you save will not load next time you open the application.")
+
+        'Opens the open file dialog to allow user to select the default file for default ratings.  Having the user select the default file means they can save the application
+        'and the default file stored in any folder and have the computer find them so long as they are together.  
+        'If lblFilePath.Text = "Defaults.txt" Then
+
+        'Dim openFilePath As New OpenFileDialog()
+        ''Sets the default file location to the debug folder
+        'openfileFilePath.InitialDirectory = "\bin\debug"
+        'openfileFilePath.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+        'openfileFilePath.FilterIndex = 2
+        'openfileFilePath.RestoreDirectory = True
+        'Me.Show()
 
 
-        End If
+        'End If
 
-        If openfileFilePath.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-            'lblfilepath.text is changed to the file path of the selected database
-            lblFilePath.Text = openfileFilePath.FileName
-        End If
+        'If openfileFilePath.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+        '    'lblfilepath.text is changed to the file path of the selected database
+        '    lblFilePath.Text = openfileFilePath.FileName
+        'End If
+
         'Sets dblDailyTotal to 0 on form load
         dblDailyTotal = 0
 
@@ -122,14 +131,14 @@ Public Class frmAppliance
 
                 'Beep() plays audible error tone to help alert the user that there is an error
                 Beep()
-                MessageBox.Show("Please enter a Kwh Cost Greater than or equal to .01 and less than .99")
+                MessageBox.Show("Please enter a Cost Per kWh Greater than or equal to .01 and less than .99")
 
                 'Verifies that the dblKwh is between .01 and 30
             ElseIf (dblKwh <= 0 Or dblKwh > 30) Then
 
                 'Beep() plays audible error tone to help alert the user that there is an error
                 Beep()
-                MessageBox.Show("Please enter a Kwh value between 0 and 30 ")
+                MessageBox.Show("Please enter a kWh value between 0 and 30 ")
 
                 'Verifies that dblHours used is between 0 and 24
             ElseIf (dblHoursUsed <= 0 Or dblHoursUsed > 24) Then
@@ -139,14 +148,14 @@ Public Class frmAppliance
                 MessageBox.Show("Please Enter daily hours used between 0 and 24")
 
                 'Verifies that dblGallons is between 0 and 50
-            ElseIf lstAppliance.SelectedItem.ToString() = "Washer   " And dblGallons <= 0 Or dblGallons >= 50 Then
+            ElseIf lstAppliance.SelectedItem.ToString.Trim() = "Washer" And dblGallons <= 0 Or dblGallons >= 50 Then
 
                 'Beep() plays audible error tone to help alert the user that there is an error
                 Beep()
-                MessageBox.Show("Please Enter Gallons Used Daily between 0 and 50")
+                MessageBox.Show("Please Enter Gallons Used Per Hour between 0 and 50")
 
                 'Verifies that intGallonCost is between .001 and .01
-            ElseIf lstAppliance.SelectedItem.ToString() = "Washer   " And dblGallonCost < 0.001 Or dblGallonCost > 0.01 Then
+            ElseIf lstAppliance.SelectedItem.ToString.Trim() = "Washer" And dblGallonCost < 0.001 Or dblGallonCost > 0.01 Then
 
                 'Beep() plays audible error tone to help alert the user that there is an error
                 Beep()
@@ -322,7 +331,7 @@ Public Class frmAppliance
     Public Sub lstAppliance_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAppliance.SelectedIndexChanged
       
 
-        If lstAppliance.SelectedItem.ToString() = "Washer   " Then
+        If lstAppliance.SelectedItem.ToString.Trim() = "Washer" Then
             txtGallonCost.Enabled = True
             txtGallons.Enabled = True
         Else : txtGallonCost.Enabled = False
@@ -396,7 +405,9 @@ Public Class frmAppliance
     Private Sub lstAppliance_LostFocus(sender As Object, e As EventArgs) Handles lstAppliance.LostFocus
         'This whole sub was put in lost focus so that the user could set a default value and save it 
         'and still have it load next time they picked that applicance without having to exit the application due to it loading during form load 
-        'Points the filestream to the filepath set in lblfilepath in the open file dialog when the app was started
+        'Points the filestream to the filepath set in lblfilepath in the open file dialog when the app was started  Coded this way to allow for a future
+        'version to allow the user to choose their default file and save it anywhere they want.  It will work in conjunction with an open file dialog that will alter the 
+        'lblFilePath.text and all the code will still work.  
         Dim fsDefaults As New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
 
         'Reads the file that fsDefaults opened
@@ -437,6 +448,8 @@ Public Class frmAppliance
         'fsDefaults.Close()
 
         fsDefaults.Close()
+        'ArrString shows a warning in visual studio but is not an issue.  arrStream gets it's index from the selected index in lstAppliance
+        'The Selected index ensures that the txtKwh is directed to the correct line in the array
         txtKwh.Text = arrStream(lstAppliance.SelectedIndex)
     End Sub
 End Class
