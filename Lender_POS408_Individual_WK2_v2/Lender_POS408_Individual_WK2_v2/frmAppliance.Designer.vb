@@ -51,7 +51,6 @@ Partial Class frmAppliance
         Me.btnDefault = New System.Windows.Forms.Button()
         Me.lblFilePath = New System.Windows.Forms.Label()
         Me.openfileFilePath = New System.Windows.Forms.OpenFileDialog()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.cmsCopy.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -289,22 +288,13 @@ Partial Class frmAppliance
         Me.lblFilePath.AutoSize = True
         Me.lblFilePath.Location = New System.Drawing.Point(0, 661)
         Me.lblFilePath.Name = "lblFilePath"
-        Me.lblFilePath.Size = New System.Drawing.Size(48, 13)
+        Me.lblFilePath.Size = New System.Drawing.Size(58, 13)
         Me.lblFilePath.TabIndex = 26
-        Me.lblFilePath.Text = "File Path"
+        Me.lblFilePath.Text = "defaults.txt"
         '
         'openfileFilePath
         '
         Me.openfileFilePath.FileName = "OpenFileDialog1"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(238, 58)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 27
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmAppliance
         '
@@ -312,7 +302,6 @@ Partial Class frmAppliance
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(321, 692)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblFilePath)
         Me.Controls.Add(Me.btnDefault)
         Me.Controls.Add(Me.txtTotalCost)
@@ -373,6 +362,5 @@ Partial Class frmAppliance
     Friend WithEvents btnDefault As System.Windows.Forms.Button
     Friend WithEvents lblFilePath As System.Windows.Forms.Label
     Friend WithEvents openfileFilePath As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

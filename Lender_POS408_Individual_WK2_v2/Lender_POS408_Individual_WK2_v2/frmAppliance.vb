@@ -56,37 +56,23 @@ Public Class frmAppliance
 
     Dim intSelectedAppliance As Integer
 
-    'Dim thefile As String = "defaults"
+
     Dim lines() As String = System.IO.File.ReadAllLines("defaults.txt")
 
     
 
-    'Dim sr As New StreamReader("Defaults.txt")
-
-    'do until sr.Peek = -1
-    '' load one word at a time till all are loaded
-    'strDefaults = sr.ReadLine()
-
-    'strDefaults(i) = strDefaults
-
-
-
-
-
-
-
     'Sets default values of text boxes to "0" when the form is loaded
     Private Sub frmAppliance_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         InitializeControls()
-        'Sets dblDailyTotal to 0 on form load
+        'Prompts user to select the default power rating file.  
         If lblFilePath.Text = "File Path" Then
-            MessageBox.Show("Please Select a default power rating file path before proceeding.")
+            MessageBox.Show("Please Select a default power rating file path before proceeding.  If you do not know what you are doing, DO NOT select a file other than Defaults.txt, the defaults you save will not load next time you open the application.")
             Dim openFilePath As New OpenFileDialog()
-
-            openfileFilePath.InitialDirectory = "\debug"
+            'Sets the default file location to the debug folder
+            openfileFilePath.InitialDirectory = "\bin\debug"
             openfileFilePath.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
             openfileFilePath.FilterIndex = 2
-            openfileFilePath.RestoreDirectory = True
+            'openfileFilePath.RestoreDirectory = True
             Me.Show()
 
 
@@ -96,6 +82,7 @@ Public Class frmAppliance
             'lblfilepath.text is changed to the file path of the selected database
             lblFilePath.Text = openfileFilePath.FileName
         End If
+        'Sets dblDailyTotal to 0 on form load
         dblDailyTotal = 0
 
     End Sub
@@ -169,7 +156,7 @@ Public Class frmAppliance
             Else
 
                 'Math includes the water cost because if washer isn't selected, the value will be 0 and that doesn't change the total for other appliance types
-                dblTotal = (dblKwhCost * dblKwh * dblHoursUsed) + (dblGallons * dblGallonCost)
+                dblTotal = (dblKwhCost * dblKwh * dblHoursUsed) + (dblGallons * dblGallonCost * dblHoursUsed)
 
 
                 dblDailyTotal = dblDailyTotal + dblTotal
@@ -248,6 +235,7 @@ Public Class frmAppliance
 
     'Clears form by calling InitializeControls(), which sets all textboxes to 0, resets lstOutput and sets appliance to the top of the list
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
         InitializeControls()
 
     End Sub
@@ -309,6 +297,8 @@ Public Class frmAppliance
         'Sets all values to zero for text boxes, dblDailyTotal and dblTotal as well as sets lstAppliance to index 0
         'Also resets the text on the lblDailyCost and lblTotalCost
         'Used on startup and when the form is cleared.  
+        
+
         txtKwhCost.Text = "0"
         txtKwh.Text = "0"
         txtHoursUsed.Text = "0"
@@ -317,8 +307,7 @@ Public Class frmAppliance
         txtGallons.Text = "0"
         txtTotalCost.Text = "0"
         txtDailyCost.Text = "0"
-        'lblDailyCost.Text = "Daily Cost"
-        'lblTotalCost.Text = "Total Cost"
+        
         lstAppliance.SelectedIndex = 0
         dblDailyTotal = 0
         dblTotal = 0
@@ -330,8 +319,8 @@ Public Class frmAppliance
     'Determines if washer was selected.  If washer is selected the user is instructed to enter gallons used per hour and cost per gallon
     'If the user selects washer, enters values and then changes the appliance to anything other than washer, txtGallonCost and txtGallons are set to 0 
     'to prevent the calculation from being performed with water values for an appliance that doesn't need them
-
-    Private Sub lstAppliance_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAppliance.SelectedIndexChanged
+    Public Sub lstAppliance_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAppliance.SelectedIndexChanged
+      
 
         If lstAppliance.SelectedItem.ToString() = "Washer   " Then
             txtGallonCost.Enabled = True
@@ -360,8 +349,12 @@ Public Class frmAppliance
 
 
     Public Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        'Calls the saveDialog to allow the user to save the output of the lstAppliance box
+
+        'Filter is in place to default to text file
         saveDialog.Filter = "TXT Files (*.txt*)|*.txt"
         If saveDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            'If the user clicks ok on save file the data is written to the file
             Dim lines(lstOutput.Items.Count - 1) As String
             lstOutput.Items.CopyTo(lines, 0)
             IO.File.WriteAllLines(saveDialog.FileName, lines)
@@ -370,12 +363,12 @@ Public Class frmAppliance
 
     End Sub
 
-   
-    
-    Private Sub btnDefault_Click(sender As Object, e As EventArgs) Handles btnDefault.Click
+
+
+    Public Sub btnDefault_Click(sender As Object, e As EventArgs) Handles btnDefault.Click
         'Converts txtKwh to a double so that the input data in the textbox is now a number and can be used in calculations
         dblKwh = CDbl(txtKwh.Text)
-        MessageBox.Show("When default power ratings are updated, you must exit and restart application for changes to take effect.")
+        'Dim lines() As String = System.IO.File.ReadAllLines("defaults.txt")
         If (dblKwh <= 0 Or dblKwh > 30) Then
 
             'Beep() plays audible error tone to help alert the user that there is an error
@@ -389,34 +382,32 @@ Public Class frmAppliance
             'allows the app to know what was in the textbox for txtKwh.text so it can write it to file
             lines(intLine) = txtKwh.Text
 
-            'actually writes the value to the file
-            System.IO.File.WriteAllLines("defaults.txt", lines)
+            'actually writes the value to the file set in 
+            System.IO.File.WriteAllLines(lblFilePath.Text, lines)
             'file path for the default file is \Lender_pos408_Individual_WK2_v2\Lender_pos408_Individual_WK2_v2\bin\defaults.txt
         End If
     End Sub
 
-    Public Sub TexttoArray()
-     
-        'txtKwh.Text = arrStream(lstAppliance.SelectedIndex)
-        'MessageBox.Show(arrStream(lstAppliance.SelectedIndex))
-    End Sub
 
-    
- 
+
+
+
 
     Private Sub lstAppliance_LostFocus(sender As Object, e As EventArgs) Handles lstAppliance.LostFocus
+        'This whole sub was put in lost focus so that the user could set a default value and save it 
+        'and still have it load next time they picked that applicance without having to exit the application due to it loading during form load 
+        'Points the filestream to the filepath set in lblfilepath in the open file dialog when the app was started
         Dim fsDefaults As New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
 
+        'Reads the file that fsDefaults opened
         Dim srDefaults As New System.IO.StreamReader(fsDefaults)
 
-
+        'Creates a list of data from the streamreader in an array
         Dim List As New List(Of String)
-
+        'keeps reading lines from the file until an empty line is hit
         Do While srDefaults.Peek >= 0
             List.Add(srDefaults.ReadLine)
         Loop
-
-        'to go back to an array
 
         Dim arrDefaults As String() = List.ToArray
 
@@ -424,25 +415,26 @@ Public Class frmAppliance
 
         srDefaults.Close()
 
-        'With Array
 
         fsDefaults = New System.IO.FileStream(lblFilePath.Text, IO.FileMode.Open)
 
         srDefaults = New System.IO.StreamReader(fsDefaults)
-
+        'Creates an array arrStream as a string
         Dim arrStream As String()
-
+        'Sets Index as 0 for counting
         Dim Index As Integer = 0
 
+        'Performs loop until all items are loaded
         Do While srDefaults.Peek >= 0
-
+            'Preserves previous data so that it isn't overwritten as the string is read into the array
             ReDim Preserve arrStream(Index)
             arrStream(Index) = srDefaults.ReadLine
+            'Counter
             Index += 1
         Loop
 
-
-        fsDefaults.Close()
+        'Closes the 
+        'fsDefaults.Close()
 
         fsDefaults.Close()
         txtKwh.Text = arrStream(lstAppliance.SelectedIndex)

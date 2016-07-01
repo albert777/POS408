@@ -1,0 +1,3 @@
+              Daily Cost For All Appliances 	$13.30
+Oven       	Hours Used	2	Cost $11.20
+Washer   	Hours Used	2	Cost $2.10
